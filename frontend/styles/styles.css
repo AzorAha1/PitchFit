@@ -3,12 +3,50 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 80vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    overflow: hidden;
+    position: relative;
+    overflow: auto;
 }
 
-.body {
-    color: red;
+
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 20vh;
+    z-index: 2;
+    position: relative;
+    color: white;
+    padding: 20px;
+}
+
+.logo {
+    width: 64px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px;
+}
+
+.top p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .top p {
+        font-size: 20px;
+    }
 }
