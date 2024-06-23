@@ -1,44 +1,86 @@
 body {
-    background-image: url('/frontend/styles/images/pexels-anastasia-shuraeva-9438094.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 80vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    position: relative;
-    overflow: auto;
+    overflow-y: scroll; /* Enables vertical scrolling */
 }
 
-
-
 .top {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: 60px; /* Height of the navbar */
+    background: rgba(188, 188, 188, 0.5); /* Semi-transparent background */
+    color: white;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.logo-and-title{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    height: 20vh;
-    z-index: 2;
-    position: relative;
-    color: white;
-    padding: 20px;
 }
 
+
 .logo {
-    width: 64px; /* Adjust size as needed */
+    width: 50px; /* Adjust size as needed */
     height: auto; /* Maintain aspect ratio */
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .top p {
     font-size: 24px;
     font-weight: bold;
+    margin: 0;
 }
 
-@media (max-width: 768px) {
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 60px; /* Space for the fixed navbar */
+    box-sizing: border-box;
+}
+.tabs {
+    margin-right: 10px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: white;
+    margin-right: 10px; /* Add some spacing between the links */
+}
+.tabs :hover {
+    color: black;
+}
+/* Different background images for each section */
+#section1 {
+    background-image: url('/frontend/styles/images/pexels-anastasia-shuraeva-9438094.jpg');
+}
+
+#section2 {
+    background-image: url('/frontend/styles/images/pexels-rajnlove-1550692.jpg');
+}
+
+#section3 {
+    background-image: url('/frontend/styles/images/pexels-thomasronveaux-13141526.jpg');
+}
+
+@media (max-width: 760px) {
     .top {
         flex-direction: column;
         text-align: center;
+        height: auto;
+        padding: 10px 0;
     }
 
     .logo {
@@ -48,5 +90,9 @@ body {
 
     .top p {
         font-size: 20px;
+    }
+
+    .section {
+        padding-top: 100px;
     }
 }
