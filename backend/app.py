@@ -14,10 +14,11 @@ def landingpage():
 def signin():
     """this is the sign in page"""
     return render_template('signin.html', title='Sign In')
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     """this is the sign up page"""
-    if request.form == 'POST':
+    if request.method == 'POST':
+        print("Form data received")  # Debugging line
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         email = request.form['email']
@@ -26,6 +27,7 @@ def signup():
 
         existing_user = mongo.db.users.find_one({'$or': [{'username': username}, {'email': email}]})
         if existing_user:
+            print("User already exists")  # Debugging line
             return 'Username or Email Already Exists'
 
         # using bcrpyt to hash password
@@ -38,7 +40,8 @@ def signup():
             'password': hashed_password
         }
         mongo.db.users.insert_one(user)
-        redirect('/signin')
+        print(f'User {username} has been created')
+        return redirect('/signin')
     return render_template('signup.html', title='Sign Up')
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
