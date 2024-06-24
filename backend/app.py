@@ -8,7 +8,7 @@ def landingpage():
     """This is the landing page"""
     return render_template('index.html', title='Home')
 @app.route('/signin')
-def sigin():
+def signin():
     """this is the sign in page"""
     return render_template('signin.html', title='Sign In')
 @app.route('/signup')

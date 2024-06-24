@@ -1,0 +1,71 @@
+body {
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    overflow-x: hidden;
+}
+
+.left {
+    background: url('../styles/images/pexels-rajnlove-1550692.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+.sign-container {
+    max-width: 700px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 70px;
+    /* margin-top: 200px; */
+}
+
+.sign-container h2 {
+    text-align: center;
+}
+
+.sign-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.sign-container input {
+    width: 100%; /* Add this line to make inputs take the full width */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sign-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sign-container button:hover {
+    background-color: #45a049;
+}
+
+.sign-container form {
+    display: flex;
+    flex-direction: column;
+}
