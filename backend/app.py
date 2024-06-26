@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, url_for
 import bcrypt
 from flask_pymongo import PyMongo
 
@@ -32,49 +32,59 @@ def signup():
     """this is the sign up page"""
     if request.method == 'POST':
         print("Form data received")  # Debugging line
-        email = request.form['email']
-        username = request.form['username']
-        password = request.form['password']
+        # Process form data
+        session['user'] = {}  # Initialize session user
+        session['user']['email'] = request.form['email']
+        session['user']['username'] = request.form['username']
+        session['user']['password'] = request.form['password']
 
-        existing_user = mongo.db.users.find_one({'$or': [{'username': username}, {'email': email}]})
+        existing_user = mongo.db.users.find_one({'$or': [{'username': session['user']['username']}, {'email': session['user']['email']}]})
         if existing_user:
             print("User already exists")  # Debugging line
             return 'Username or Email Already Exists'
 
         # using bcrpyt to hash password
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        user = {
-            'email': email,
-            'username': username,
-            'password': hashed_password
-        }
-        mongo.db.users.insert_one(user)
-        print(f'User {username} has been created')
-        return redirect('/setup/step1')
+        session['user']['password'] = bcrypt.hashpw(session['user']['password'].encode('utf-8'), bcrypt.gensalt())
+        return redirect(url_for('getname'))  
     return render_template('signup.html', title='Sign Up')
 @app.route('/signup/step1', methods=['GET', 'POST'])
 def getname():
     """step 1 of setup"""
+    if request.method == 'POST':
+        session['user']['name'] = request.form['preferred_name']
+        return redirect(url_for('getage'))
     return render_template('setup1.html', title='Setup Step 1')
 @app.route('/signup/step2', methods=['GET', 'POST'])
 def getage():
     """step 2 of setup"""
+    if request.method == 'POST':
+        session['user']['age'] = request.form['age']
+        return redirect(url_for('getweight'))
     return render_template('setup2.html', title='Setup Step 2')
 @app.route('/signup/step3', methods=['GET', 'POST'])
 def getweight():
     """step 3 of setup"""
+    if request.method == 'POST':
+        session['user']['weight'] = request.form['weight']
+        return redirect(url_for('getheight'))
     return render_template('setup3.html', title='Setup Step 3')
 @app.route('/signup/step4', methods=['GET', 'POST'])
 def getheight():
     """step 4 of setup"""
+    if request.method == 'POST':
+        session['user']['height'] = request.form['height']
+        return redirect(url_for('goals'))
     return render_template('setup4.html', title='Setup Step 4')
 @app.route('/signup/goals', methods=['GET', 'POST'])
 def goals():
     """setting goals"""
     if request.method == 'POST':
         try:
-            thegoals = request.form['selected_goals']
-            print(f'The Goals are: {thegoals}')
+            session['user']['goals'] = request.form['selected_goals']
+            mongo.db.users.insert_one(session['user'])
+            print(f'The Goals are: {session["user"]["name"]}')
+            session.pop('user', None)
+            return redirect(url_for('dashboard'))
         except KeyError:
             print("The 'selected_goals' key was not found in the form data.")
     return render_template('goals.html', title='Goals')
