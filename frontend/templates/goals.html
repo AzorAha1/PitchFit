@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="split left"></div>
+    <div class="split right">
+        <div class="sign-container">
+            <h2>Select Your Goals</h2>
+            <form method="post" action="{{ url_for('goals') }}" id="goals-form" onsubmit="submitit(event)">
+                <div class="goal-container" data-value="Weight Loss" onclick="ontoggleselection(this)">
+                    Weight Loss
+                </div>
+                <div class="goal-container" data-value="Endurance" onclick="ontoggleselection(this)">
+                    Endurance
+                </div>
+                <div class="goal-container" data-value="Sharpness" onclick="ontoggleselection(this)">
+                    Sharpness
+                </div>
+                <input type="hidden" id="selected-goals" name="selected_goals">
+                <button type="submit" onclick="submitit()">Next</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function ontoggleselection(element) {
+            if (element.classList.contains('selected')) {
+                console.log('Removing:', element.getAttribute('data-value'));
+                element.classList.remove('selected');
+            } else {
+                console.log('Adding:', element.getAttribute('data-value'));
+                element.classList.add('selected');
+            }
+            
+        }
+        function submitit(event) {
+            event.preventDefault()
+            var submittedgoals = []
+            var selectedelements = document.querySelectorAll('.goal-container.selected');
+            selectedelements.forEach(element => {
+                submittedgoals.push(element.getAttribute('data-value'))
+            });
+            document.getElementById('selected-goals').value = submittedgoals.join(',')
+            document.getElementById('goals-form').submit()
+        }
+    </script>
+</body>
+</html>

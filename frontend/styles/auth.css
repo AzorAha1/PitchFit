@@ -69,3 +69,17 @@ body {
     display: flex;
     flex-direction: column;
 }
+.goal-container {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.goal-container.selected {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="split left"></div>
+    <div class="split right">
+        <div class="sign-container">
+            <h2>Welcome</h2>
+            <form method="post" action="{{ url_for('getname') }}">
+                <label for="preferred_name">Preferred Name:</label>
+                <input type="text" id="preferred_name" name="preferred_name">
+                <button type="submit">Next</button>
+            </form> 
+        </div>
+    </div>
+</body>
+</html>
