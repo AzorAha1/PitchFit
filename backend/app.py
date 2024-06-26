@@ -79,15 +79,16 @@ def getheight():
 def goals():
     """setting goals"""
     if request.method == 'POST':
-        try:
+        if 'selected_goals' in request.form:
             session['user']['goals'] = request.form['selected_goals']
             mongo.db.users.insert_one(session['user'])
-            print(f'The Goals are: {session["user"]["name"]}')
+            print(f'The Goals are: {session["user"]["goals"]}')
             session.pop('user', None)
             return redirect(url_for('dashboard'))
-        except KeyError:
-            print("The 'selected_goals' key was not found in the form data.")
+        else:
+            print("Error: 'selected_goals' key not found in form data.")
     return render_template('goals.html', title='Goals')
+
 @app.route('/dashboard')
 def dashboard():
     """this is the dashboard page"""
