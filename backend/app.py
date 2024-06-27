@@ -75,6 +75,7 @@ def getheight():
         session['user']['height'] = request.form['height']
         return redirect(url_for('goals'))
     return render_template('setup4.html', title='Setup Step 4')
+
 @app.route('/signup/goals', methods=['GET', 'POST'])
 def goals():
     """setting goals"""
@@ -83,16 +84,36 @@ def goals():
             session['user']['goals'] = request.form['selected_goals']
             mongo.db.users.insert_one(session['user'])
             print(f'The Goals are: {session["user"]["goals"]}')
-            session.pop('user', None)
+            goals = session['user']['goals']
+           
+            if 'Weight Loss' in goals:
+                weight_loss_redirect = True
+            else:
+                weight_loss_redirect = False
+            if weight_loss_redirect:
+                return redirect(url_for('weight_loss'))
             return redirect(url_for('dashboard'))
         else:
             print("Error: 'selected_goals' key not found in form data.")
     return render_template('goals.html', title='Goals')
 
+@app.route('/signup/weight_loss', methods=['GET', 'POST'])
+def weight_loss():
+    """page for weight loss"""
+    if request.method == 'POST':
+        if request.form['weight_loss_complete'] == 'true':
+            return redirect(url_for('dashboard'))
+    return render_template('weight_loss.html', title='Weight Loss')
 @app.route('/dashboard')
 def dashboard():
     """this is the dashboard page"""
     return render_template('dashboard.html', title='Dashboard')
+@app.route('/signout')
+def signout():
+    """this is the signout page"""
+    session.pop('user', None)
+    print('User has been signed out')
+    return redirect(url_for('signin'))
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
 

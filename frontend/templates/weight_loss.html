@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="split left"></div>
+    <div class="split right">
+        <div class="sign-container">
+            <div class="content">
+                <h2>Weight Loss</h2>
+                <p>
+                    Losing weight can be an incredibly challenging journey. It's not just about diet and exercise; it's about changing habits, overcoming mental barriers, and staying motivated over the long term. We understand how hard it can be, and that's why we are committed to being slow and supportive in our approach.
+                </p>
+                <p>
+                    Research shows that people who lose weight quickly often gain it back within a year. This is because rapid weight loss methods usually involve drastic changes that are not sustainable in the long run. When you lose weight too quickly, you may also lose muscle, water, and even bone mass instead of fat. Moreover, extreme dieting can lead to nutritional deficiencies and other health issues.
+                </p>
+                <p>
+                    At Pitch Fit, we believe in doing things effectively and safely. Our program is designed to help you lose weight gradually, ensuring that the changes you make are sustainable and beneficial for your overall health. We focus on building healthy habits that you can maintain for life. This means a balanced diet, regular physical activity, and mental wellness practices.
+                </p>
+                <p>
+                    We are here to support you every step of the way. Our team of experts will provide you with personalized guidance, regular check-ins, and motivational support to help you stay on track. We understand that everyone's journey is unique, and we tailor our approach to meet your individual needs.
+                </p>
+                <p>
+                    Remember, it's not just about the destination but the journey. Sustainable weight loss takes time, and it's okay to progress at your own pace. We are committed to helping you achieve your goals safely and effectively, ensuring that the changes you make today will benefit you for a lifetime.
+                </p>
+                <p>
+                    Let's embark on this journey together. With patience, persistence, and the right support, you can achieve your weight loss goals and enjoy a healthier, happier life.
+                </p>
+                <form action="{{ url_for('weight_loss') }}" method="post">
+                    <input type="hidden" name="weight_loss_complete" value="true">
+                    <button type="submit">Next</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

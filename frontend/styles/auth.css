@@ -83,3 +83,10 @@ body {
     border-color: #4CAF50;
     color: white;
 }
+.content h2 {
+    text-align: center;
+    text-decoration: solid;
+}
+.content p {
+    font-size: 14px;
+}
