@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     {% if title %}
         <title>Pitch Fit | {{ title }}</title>
     {% else %}
@@ -14,10 +15,11 @@
     <div class="top">
         <div class="logo-and-title">
             <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
             <p>PitchFit</p>
         </div>
         <div class="tabs">
-            <a href="About">About</a>
+            <a href="about">About</a>
             <a href="Community">Community</a>
             <a href="signin">Sign-In</a>
             <a href="signup">Sign-Up</a>
@@ -26,7 +28,18 @@
     <div id="section1" class="section">
     </div>
     <div id="section2" class="section">
-    </div>
+        <div class="section2-content">
+            <div class="section2-content-left">
+                <h2>About PitchFit</h2>
+                <p>Welcome to PitchFit, your ultimate health and wellness companion designed to empower you in reaching your fitness goals. Whether you are a seasoned athlete or just starting your fitness journey, PitchFit offers the tools and community support you need to stay motivated and achieve success.</p>
+                <p>Our platform is built with the user in mind, providing a seamless experience to log activities, set goals, and track progress. With real-time updates, insightful reports, and analytics, PitchFit helps you understand your fitness journey and make informed decisions to improve your performance.</p>
+                <p>At PitchFit, we believe in the power of community. Join our vibrant community of like-minded individuals who share your passion for fitness and wellness. Connect, share, and inspire each other as you work towards a healthier, happier you.</p>
+                <p>Start your journey with PitchFit today and unlock your full potential. Together, we can achieve greatness.</p>        
+            </div>
+            <div class="section2-content-right">
+            </div>
+        </div>
+    </div> 
     <div id="section3" class="section">
     </div>
 </body>

@@ -37,7 +37,11 @@ def signup():
         session['user']['email'] = request.form['email']
         session['user']['username'] = request.form['username']
         session['user']['password'] = request.form['password']
-
+        session['user']['name'] = request.form['preferred_name']
+        session['user']['weight'] = request.form['weight']
+        session['user']['height'] = request.form['height']
+        session['user']['gender'] = request.form['gender']
+        session['user']['age'] = request.form['age']
         existing_user = mongo.db.users.find_one({'$or': [{'username': session['user']['username']}, {'email': session['user']['email']}]})
         if existing_user:
             print("User already exists")  # Debugging line
@@ -47,17 +51,21 @@ def signup():
         session['user']['password'] = bcrypt.hashpw(session['user']['password'].encode('utf-8'), bcrypt.gensalt())
         return redirect(url_for('getname'))  
     return render_template('signup.html', title='Sign Up')
+
 @app.route('/signup/step1', methods=['GET', 'POST'])
 def getname():
     """step 1 of setup"""
     if request.method == 'POST':
+        print(f"{request.form['preferred_name']}")
         session['user']['name'] = request.form['preferred_name']
+        
         return redirect(url_for('getage'))
     return render_template('setup1.html', title='Setup Step 1')
 @app.route('/signup/step2', methods=['GET', 'POST'])
 def getage():
     """step 2 of setup"""
     if request.method == 'POST':
+        print(f"{request.form['age']}")
         session['user']['age'] = request.form['age']
         return redirect(url_for('getweight'))
     return render_template('setup2.html', title='Setup Step 2')
@@ -65,6 +73,7 @@ def getage():
 def getweight():
     """step 3 of setup"""
     if request.method == 'POST':
+        print(f"{request.form['weight']}")
         session['user']['weight'] = request.form['weight']
         return redirect(url_for('getheight'))
     return render_template('setup3.html', title='Setup Step 3')
@@ -72,10 +81,27 @@ def getweight():
 def getheight():
     """step 4 of setup"""
     if request.method == 'POST':
+        print(f"{request.form['height']}")
         session['user']['height'] = request.form['height']
-        return redirect(url_for('goals'))
-    return render_template('setup4.html', title='Setup Step 4')
 
+        return redirect(url_for('getgender'))
+    return render_template('setup4.html', title='Setup Step 4')
+@app.route('/signup/step5', methods=['GET', 'POST'])
+def getgender():
+    """get the gender of user"""
+    if request.method == 'POST':
+        session['user']['gender'] = request.form['gender']
+        print(f"{request.form['gender']}")
+        return redirect(url_for('goals'))
+    return render_template('getgender.html', title='Gender')
+
+@app.route('/signup/weight_loss', methods=['GET', 'POST'])
+def weight_loss():
+    """page for weight loss"""
+    if request.method == 'POST':
+        if request.form['weight_loss_complete'] == 'true':
+            return redirect(url_for('dashboard'))
+    return render_template('weight_loss.html', title='Weight Loss')
 @app.route('/signup/goals', methods=['GET', 'POST'])
 def goals():
     """setting goals"""
@@ -96,18 +122,17 @@ def goals():
         else:
             print("Error: 'selected_goals' key not found in form data.")
     return render_template('goals.html', title='Goals')
-
-@app.route('/signup/weight_loss', methods=['GET', 'POST'])
-def weight_loss():
-    """page for weight loss"""
-    if request.method == 'POST':
-        if request.form['weight_loss_complete'] == 'true':
-            return redirect(url_for('dashboard'))
-    return render_template('weight_loss.html', title='Weight Loss')
 @app.route('/dashboard')
 def dashboard():
     """this is the dashboard page"""
     return render_template('dashboard.html', title='Dashboard')
+
+@app.route('/debug/users')
+def debug_users():
+    """Route to debug user data in MongoDB"""
+    users = mongo.db.users.find()
+    users_list = list(users)
+    return render_template('debug_users.html', users=users_list)
 @app.route('/signout')
 def signout():
     """this is the signout page"""

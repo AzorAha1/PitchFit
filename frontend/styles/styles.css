@@ -47,8 +47,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 60px; /* Space for the fixed navbar */
+    padding-top: 60px;
     box-sizing: border-box;
+    text-align: center;
 }
 .tabs {
     margin-right: 10px;
@@ -68,12 +69,36 @@ body {
 }
 
 #section2 {
-    background-image: url('/frontend/styles/images/pexels-rajnlove-1550692.jpg');
+    /* background-image: url('/frontend/styles/images/pexels-rajnlove-1550692.jpg'); */
+    background-color: whitesmoke;
 }
-
+#section2 h2 {
+    color: black;
+    font-family: 'Playfair Display', sans-serif;
+    margin-bottom: 20px;
+}
+#section2 p {
+    margin: 0;
+    color: black;
+}
 #section3 {
     background-image: url('/frontend/styles/images/pexels-thomasronveaux-13141526.jpg');
 }
+        .about-section {
+            padding: 20px;
+            background-color: whitesmoke;
+            color: black;
+            text-align: center;
+        }
+        .about-section h2 {
+            font-family: 'Playfair Display', sans-serif;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            margin: 0;
+            padding-top: 10px;
+            display: block;  /* Ensure the paragraph is a block element */
+        }
 
 @media (max-width: 760px) {
     .top {
