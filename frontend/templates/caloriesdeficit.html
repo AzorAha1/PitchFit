@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="split left"></div>
+    <div class="split right">
+        <div class="sign-container">
+            <h1>Calorie Deficit Result</h1>
+            <p>Your Basal Metabolic Rate (BMR) is: {{ bmr }} calories/day</p>
+            <p>Your Total Daily Energy Expenditure (TDEE) is: {{ tdee }} calories/day</p>
+            <form action="{{ url_for('deficit') }}" method="post">
+                <input type="hidden" name="calories_deficit" value="true">
+                <button type="submit">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
