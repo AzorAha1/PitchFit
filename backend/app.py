@@ -27,6 +27,7 @@ def signin():
             rehashed_password = bcrypt.checkpw(password.encode('utf-8'), user['password'])
             if rehashed_password:
                 print(f'User {username} has been authenticated')
+                user['_id'] = str(user['_id'])
                 session['user'] = user
                 return redirect('/dashboard')
         error_message = 'Invalid Credentials'
