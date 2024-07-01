@@ -37,7 +37,18 @@ body {
     font-weight: bold;
     margin: 0;
 }
+.dashboardbody {
+    background-color: aqua;
+}
+.contentbox {
+    padding: 20px;
+    color: black;
+    background-color: white;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
 
+}
 .section {
     height: 100vh;
     display: flex;

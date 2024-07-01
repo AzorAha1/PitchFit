@@ -183,8 +183,23 @@ def deficit():
 @app.route('/dashboard')
 def dashboard():
     """this is the dashboard page"""
-    return render_template('dashboard.html', title='Dashboard')
-
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    # convert objectid to string for json serialization 
+    user['_id'] = str(user['_id'])
+    return render_template('dashboard.html', title='Dashboard', user=user)
+@app.route('/dashboard/workout')
+def workout():
+    """this is where the work out plan will be"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    # convert objectid to string for json serialization 
+    user['_id'] = str(user['_id'])
+    return render_template('workout.html', title='Workout', user=user)
 @app.route('/debug/users')
 def debug_users():
     """Route to debug user data in MongoDB"""
