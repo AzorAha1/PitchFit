@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        {% if title %}
+            <title>Pitch Fit | {{ title }}</title>
+        {% else %}
+            <title>Pitch Fit</title>
+        {% endif %}
+    </head>
+    <body class="dashboardbody">
+        <div class="top">
+            <div class="logo-and-title">
+                <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+    
+                <p>PitchFit</p>
+            </div>
+            <div class="tabs">
+                <a href="{{ url_for('dashboard') }}">Go Back to Dashboard</a>
+            </div>
+        </div>
+        <div class="contentbox">
+            <div class="food-container">
+                <h2>Morning</h2>
+                <form method="post" action="{{ url_for('addfood') }}">
+                    <label for="getfood-morning">Search Food:</label>
+                    <input type="text" id="getfood-morning" name="getfood-morning">
+                    <button type="submit">Log BreakFast</button>
+                </form>            
+            </div>
+            <div class="food-container">
+                <h2>Afternoon</h2>
+                <form method="post" action="{{ url_for('addfood') }}">
+                    <label for="getfood-afternoon">Search Food:</label>
+                    <input type="text" id="getfood-afternoon" name="getfood-afternoon">
+                    <button type="submit">Log Afternoon Meal</button>
+                </form>            
+            </div>
+            <div class="food-container">
+                <h2>Dinner</h2>
+                <form method="post" action="{{ url_for('addfood') }}">
+                    <label for="getfood-dinner">Search Food:</label>
+                    <input type="text" id="getfood-dinner" name="getfood-dinner">
+                    <button type="submit">Log Dinner</button>
+                </form>            
+            </div>
+        </div>
+    </body>
+    </html>
+    
+</body>
+</html>

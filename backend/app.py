@@ -3,6 +3,7 @@ from bson import ObjectId
 from flask import Flask, flash, render_template, request, redirect, session, url_for
 import bcrypt
 from flask_pymongo import PyMongo
+from foodstorageapi import foodapi
 
 app = Flask(__name__, template_folder='../frontend/templates/', static_folder='../frontend/')
 app.secret_key = 'youwillneverfindoutwhatthisis'
@@ -201,9 +202,15 @@ def workout():
     # convert objectid to string for json serialization 
     user['_id'] = str(user['_id'])
     return render_template('workout.html', title='Workout', user=user)
-@app.route('/dashboard/addfood')
+@app.route('/dashboard/addfood', methods=['GET', 'POST'])
 def addfood():
     """this is where to log meals"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    # convert objectid to string for json serialization 
+    user['_id'] = str(user['_id'])
     return render_template('addfood.html')
 @app.route('/debug/users')
 def debug_users():
