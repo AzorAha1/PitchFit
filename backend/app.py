@@ -31,6 +31,7 @@ def signin():
                 session['user'] = user
                 return redirect('/dashboard')
         error_message = 'Invalid Credentials'
+        flash(error_message)
     return render_template('signin.html', title='Sign In', error=error_message)
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -200,6 +201,10 @@ def workout():
     # convert objectid to string for json serialization 
     user['_id'] = str(user['_id'])
     return render_template('workout.html', title='Workout', user=user)
+@app.route('/dashboard/addfood')
+def addfood():
+    """this is where to log meals"""
+    return render_template('addfood.html')
 @app.route('/debug/users')
 def debug_users():
     """Route to debug user data in MongoDB"""

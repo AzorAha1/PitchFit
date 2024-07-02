@@ -26,12 +26,14 @@
     <div class="contentbox">
         <h1>Goals: {{ user.goals }}</h1>
         {% if 'Weight Loss' in user.goals %}
-            <p>Calories to take in for weight loss: {{ user.tdee - 500}}</p>
+            <p>Calories to take in for weight loss: {{ user.tdee - 500}} calories/day</p>
         {% endif %}
+        <p>Current Weight(Kg): {{ user.weight }}</p>
         <p>Basal Metabolic Rate (BMR): {{ user.bmr }} calories/day</p>
         <p>Daily Energy Expenditure (TDEE): {{ user.tdee }} calories/day</p>
-        <button type="reset">Add Food</button>
-        <a href="{{ url_for('workout') }}">Log Workout</a>
+        <input type="hidden">
+        <a href="{{ url_for('addfood') }}" class="buttombuttons">Add Food</a>
+        <a href="{{ url_for('workout') }}" class="buttombuttons">Log Workout</a>
     </div>
 </body>
 </html>
