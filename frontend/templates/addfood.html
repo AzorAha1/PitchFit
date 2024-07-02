@@ -26,6 +26,17 @@
         {% endif %}
     </head>
     <body class="dashboardbody">
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
         <div class="top">
             <div class="logo-and-title">
                 <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">

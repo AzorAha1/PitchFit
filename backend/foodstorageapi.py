@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from datetime import datetime
 import requests
 
 def foodapi(query):
@@ -6,6 +7,13 @@ def foodapi(query):
     url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apikey}&query={query}'
     response = requests.get(url)
     if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+        necessary_foodinfo = []
+        data = response.json()
+        foods = data.get('foods', [])
+        for food in foods:
+            food_info = {
+                'description': food.get('description', ''),
+                'food nutritions': food.get('foodNutrients', [])
+            }
+        necessary_foodinfo.append(food_info)
+    return necessary_foodinfo          

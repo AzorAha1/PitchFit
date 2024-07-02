@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from datetime import datetime
 from bson import ObjectId
 from flask import Flask, flash, render_template, request, redirect, session, url_for
 import bcrypt
@@ -205,13 +206,44 @@ def workout():
 @app.route('/dashboard/addfood', methods=['GET', 'POST'])
 def addfood():
     """this is where to log meals"""
+    current_time = datetime.now().strftime('%Y-%m-%d %I:%M %p')
     user_id = session.get('user', {}).get('_id')
     user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     if not user:
         return redirect(url_for('signin'))
     # convert objectid to string for json serialization 
     user['_id'] = str(user['_id'])
-    return render_template('addfood.html')
+    if request.method == 'POST':
+        queryfoodformrng = request.form.get('getfood-morning')
+        queryfoodforaftn = request.form.get('getfood-afternoon')
+        queryfoodfordinner = request.form.get('getfood-dinner')
+         
+        
+        if queryfoodformrng:
+            morning_meal = foodapi(query=queryfoodformrng)
+            if morning_meal:
+                flash(f'BreakFast logged successfully for morning', 'success')
+                mongo.db.users.update_one(
+                    {'_id': ObjectId(user_id)},
+                    {'$push': {'morning_meal': {'food': morning_meal, 'time': current_time}}}
+                )
+        if queryfoodforaftn:
+            afternoon_meal = foodapi(query=queryfoodforaftn)
+            if afternoon_meal:
+                flash(f'Afternoon Meal successfully for afternoon', 'success')
+                mongo.db.users.update_one(
+                    {'_id': ObjectId(user_id)},
+                    {'$push': {'afternoon_meal': {'food': afternoon_meal, 'time': current_time}}}
+                )
+        if queryfoodfordinner:
+            dinner_meal = foodapi(query=queryfoodfordinner)
+            if dinner_meal:
+                flash(f'Dinner logged successfully for dinner', 'success')
+                mongo.db.users.update_one(
+                    {'_id': ObjectId(user_id)},
+                    {'$push': {'dinner_meal': {'food': dinner_meal, 'time': current_time}}}
+                )
+    return render_template('addfood.html', user=user)
 @app.route('/debug/users')
 def debug_users():
     """Route to debug user data in MongoDB"""
