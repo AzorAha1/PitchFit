@@ -33,7 +33,7 @@
         <p>Daily Energy Expenditure (TDEE): {{ user.tdee }} calories/day</p>
         <input type="hidden">
         <a href="{{ url_for('addfood') }}" class="buttombuttons">Add Food</a>
-        <a href="{{ url_for('workout') }}" class="buttombuttons">Log Workout</a>
+        <a href="{{ url_for('workout') }}" class="buttombuttons">Start Daily Workout !</a>
     </div>
     <div class="contentbox">
         <h1>total calories taken today is: {{ total_calories.morning_meal + total_calories.afternoon_meal + total_calories.dinner_meal }} out of {{ user.tdee - 500 }}</h1>

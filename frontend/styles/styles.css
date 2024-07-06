@@ -64,6 +64,17 @@ body {
 .contentboxsmall p {
     color: black;
 }
+.workout-schedule ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.workout-schedule ul li {
+    background: #e0e0e0;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
 
 .section {
     height: 100vh;

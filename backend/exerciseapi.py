@@ -11,4 +11,4 @@ def exerciseapi(muscle):
     response = requests.get(url=url, headers=headers)
     data = response.json()
     return data
-    
+print(exerciseapi('back'))
