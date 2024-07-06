@@ -133,8 +133,8 @@ def goals():
             goals = session['user']['goals']
             mongo.db.users.update_one({'username': session['user']['username']}, {'$set': {'goals': session['user']['goals']}})
             if 'Weight Loss' in goals:
-                return redirect(url_for('deficit'))
-            return redirect(url_for('dashboard'))
+                return redirect(url_for('weight_loss'))
+            # return redirect(url_for('dashboard'))
         else:
             print("Error: 'selected_goals' key not found in form data.")
     print(f'The User is: {session["user"]}')
@@ -192,7 +192,14 @@ def dashboard():
         return redirect(url_for('signin'))
     # convert objectid to string for json serialization 
     user['_id'] = str(user['_id'])
-    return render_template('dashboard.html', title='Dashboard', user=user)
+    def get_calories(meal):
+        return sum(nutrient['Value'] for meal in user.get(meal, []) for food in meal['food'] for nutrient in food['Nutrients'] if nutrient['Nutrient Name'] == 'Energy' and nutrient['Unit Name'] == 'KCAL')
+    total_calories = {
+        'morning_meal': get_calories('morning_meal'),
+        'afternoon_meal': get_calories('afternoon_meal'),
+        'dinner_meal': get_calories('dinner_meal')
+    }
+    return render_template('dashboard.html', title='Dashboard', user=user, total_calories=total_calories)
 @app.route('/dashboard/workout')
 def workout():
     """this is where the work out plan will be"""
@@ -217,7 +224,6 @@ def addfood():
         queryfoodformrng = request.form.get('getfood-morning')
         queryfoodforaftn = request.form.get('getfood-afternoon')
         queryfoodfordinner = request.form.get('getfood-dinner')
-         
         
         if queryfoodformrng:
             morning_meal = foodapi(query=queryfoodformrng)

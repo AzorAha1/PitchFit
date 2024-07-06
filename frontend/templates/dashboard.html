@@ -26,7 +26,7 @@
     <div class="contentbox">
         <h1>Goals: {{ user.goals }}</h1>
         {% if 'Weight Loss' in user.goals %}
-            <p>Calories to take in for weight loss: {{ user.tdee - 500}} calories/day</p>
+            <p>Calories to take in for weight loss: {{ user.tdee - 500 }} calories/day</p>
         {% endif %}
         <p>Current Weight(Kg): {{ user.weight }}</p>
         <p>Basal Metabolic Rate (BMR): {{ user.bmr }} calories/day</p>
@@ -34,6 +34,34 @@
         <input type="hidden">
         <a href="{{ url_for('addfood') }}" class="buttombuttons">Add Food</a>
         <a href="{{ url_for('workout') }}" class="buttombuttons">Log Workout</a>
+    </div>
+    <div class="contentbox">
+        <h1>total calories taken today is: {{ total_calories.morning_meal + total_calories.afternoon_meal + total_calories.dinner_meal }} out of {{ user.tdee - 500 }}</h1>
+    </div>
+    <div class="contentbox">
+        <h1> {{ user.name }} Daily Statistics</h1>
+        <h2>Morning Meal</h2>
+        <p>Total Calories: {{ total_calories.morning_meal }}</p>
+        {% for meal in user.morning_meal %}
+            <p>Meal name: {{ meal.food[0].Description }}</p>
+            <p>Time logged: {{ meal.time }}</p>
+        {% endfor %} 
+    </div>
+    <div class="contentbox">
+        <h2>Afternoon Meal</h2>
+        <p>Total Calories: {{ total_calories.afternoon_meal }}</p>
+        {% for meal in user.afternoon_meal %}
+            <p>Meal name: {{ meal.food[0].Description }}</p>
+            <p>Time logged: {{ meal.time }}</p>
+        {% endfor %}
+    </div>
+    <div class="contentbox">
+        <h2>Dinner Meal</h2>
+        <p>Total Calories: {{ total_calories.dinner_meal }}</p>
+        {% for meal in user.dinner_meal %}
+            <p>Meal name: {{ meal.food[0].Description }}</p>
+            <p>Time logged: {{ meal.time }}</p>
+        {% endfor %}
     </div>
 </body>
 </html>
