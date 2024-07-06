@@ -41,26 +41,34 @@
     <div class="contentbox">
         <h1> {{ user.name }} Daily Statistics</h1>
         <h2>Morning Meal</h2>
-        <p>Total Calories: {{ total_calories.morning_meal }}</p>
+    
+        <b>Total Calories: {{ total_calories.morning_meal }}</b>
         {% for meal in user.morning_meal %}
+        <div class="contentboxsmall">
             <p>Meal name: {{ meal.food[0].Description }}</p>
             <p>Time logged: {{ meal.time }}</p>
+        </div>
         {% endfor %} 
+       
     </div>
     <div class="contentbox">
         <h2>Afternoon Meal</h2>
-        <p>Total Calories: {{ total_calories.afternoon_meal }}</p>
+        <b>Total Calories: {{ total_calories.afternoon_meal }}</b>
         {% for meal in user.afternoon_meal %}
-            <p>Meal name: {{ meal.food[0].Description }}</p>
-            <p>Time logged: {{ meal.time }}</p>
+            <div class="contentboxsmall">
+                <p>Meal name: {{ meal.food[0].Description }}</p>
+                <p>Time logged: {{ meal.time }}</p>
+            </div>   
         {% endfor %}
     </div>
     <div class="contentbox">
         <h2>Dinner Meal</h2>
-        <p>Total Calories: {{ total_calories.dinner_meal }}</p>
+        <b>Total Calories: {{ total_calories.dinner_meal }}</b>
         {% for meal in user.dinner_meal %}
-            <p>Meal name: {{ meal.food[0].Description }}</p>
-            <p>Time logged: {{ meal.time }}</p>
+            <div class="contentboxsmall">
+                <p>Meal name: {{ meal.food[0].Description }}</p>
+                <p>Time logged: {{ meal.time }}</p> 
+            </div>
         {% endfor %}
     </div>
 </body>

@@ -1,34 +1,35 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    overflow-y: scroll; /* Enables vertical scrolling */
+    font-family: 'Playfair Display', Arial, sans-serif;
+    overflow-y: scroll;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
 .top {
-    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-    height: 60px; /* Height of the navbar */
-    background: rgba(188, 188, 188, 0.5); /* Semi-transparent background */
+    height: 60px;
+    background: rgba(51, 51, 156, 0.8);
     color: white;
     padding: 0 20px;
+    
     box-sizing: border-box;
 }
-.logo-and-title{
+
+.logo-and-title {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
 .logo {
-    width: 50px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 50px;
+    height: auto;
     margin-right: 10px;
 }
 
@@ -37,18 +38,33 @@ body {
     font-weight: bold;
     margin: 0;
 }
+
 .dashboardbody {
-    background-color: aqua;
+    background-color: #e0f7fa;
+    padding-top: 60px;
+    box-sizing: border-box;
 }
+
 .contentbox {
     padding: 20px;
-    color: black;
-    background-color: white;
     margin: 20px;
+    background-color: white;
     border: 1px solid #ccc;
-    border-radius: 15px;
-
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+.contentboxsmall {
+    padding: 20px;
+    margin: 20px;
+    background-color: #46469f;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.contentboxsmall p {
+    color: black;
+}
+
 .section {
     height: 100vh;
     display: flex;
@@ -58,10 +74,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 60px;
-    box-sizing: border-box;
     text-align: center;
 }
+
 .tabs {
     margin-right: 10px;
 }
@@ -69,67 +84,60 @@ body {
 .tabs a {
     text-decoration: none;
     color: white;
-    margin-right: 10px; /* Add some spacing between the links */
-}
-.tabs :hover {
-    color: black;
-}
-/* Different background images for each section */
-#section1 {
-    background-image: url('/frontend/styles/images/pexels-anastasia-shuraeva-9438094.jpg');
+    margin-right: 20px;
+    font-weight: bold;
 }
 
-#section2 {
-    /* background-image: url('/frontend/styles/images/pexels-rajnlove-1550692.jpg'); */
-    background-color: whitesmoke;
-}
-#section2 h2 {
-    color: black;
-    font-family: 'Playfair Display', sans-serif;
-    margin-bottom: 20px;
-}
-#section2 p {
-    margin: 0;
+.tabs a:hover {
     color: black;
 }
+
 .buttombuttons {
-    background-color: rgb(51, 51, 156);
-    padding: 7px;
+    background-color: #33339c;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 20px;
-    color: aliceblue;
+    color: white;
+    display: inline-block;
+    transition: background-color 0.3s;
 }
-.food-container {
-    
-    padding: 20px;
+
+.buttombuttons:hover {
+    background-color: #28289c;
+}
+
+.food-container, .sign-container {
+    padding: 40px;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
-    padding: 70px;
-    
-    /* margin-top: 200px; */
+    max-width: 700px;
+    margin: auto;
 }
 
-.food-container h2 {
+.food-container h2, .sign-container h2 {
     text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.food-container label {
+.food-container label, .sign-container label {
     display: block;
     margin: 10px 0 5px;
+    font-weight: bold;
 }
 
-.food-container input {
-    width: 100%; /* Add this line to make inputs take the full width */
+.food-container input, .sign-container input {
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.food-container button {
+.food-container button, .sign-container button {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -138,32 +146,51 @@ body {
     font-size: 16px;
 }
 
-.food-container button:hover {
+.food-container button:hover, .sign-container button:hover {
     background-color: #45a049;
 }
 
-.food-container form {
-    display: flex;
-    flex-direction: column;
+#section1 {
+    background-image: url('/frontend/styles/images/pexels-anastasia-shuraeva-9438094.jpg');
 }
+
+#section2 {
+    background-color: whitesmoke;
+}
+
+#section2 h2 {
+    color: black;
+    font-family: 'Playfair Display', sans-serif;
+    margin-bottom: 20px;
+}
+
+#section2 p {
+    margin: 0;
+    color: black;
+}
+
 #section3 {
     background-image: url('/frontend/styles/images/pexels-thomasronveaux-13141526.jpg');
 }
-        .about-section {
-            padding: 20px;
-            background-color: whitesmoke;
-            color: black;
-            text-align: center;
-        }
-        .about-section h2 {
-            font-family: 'Playfair Display', sans-serif;
-            margin-bottom: 20px;
-        }
-        .about-section p {
-            margin: 0;
-            padding-top: 10px;
-            display: block;  /* Ensure the paragraph is a block element */
-        }
+
+.about-section {
+    padding: 20px;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-family: 'Playfair Display', sans-serif;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    margin: 0;
+    padding-top: 10px;
+    display: block;
+}
+
 .preloader {
     position: fixed;
     display: none;
@@ -176,21 +203,21 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .preloader .loader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #3498db;
+    border-top: 16px solid #33339c;
     width: 120px;
     height: 120px;
-    animation-name: spin;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation: spin 2s linear infinite;
 }
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
 @media (max-width: 760px) {
     .top {
         flex-direction: column;
@@ -210,5 +237,21 @@ body {
 
     .section {
         padding-top: 100px;
+    }
+
+    .tabs {
+        margin: 10px 0;
+    }
+
+    .tabs a {
+        margin-right: 0;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .buttombuttons {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
     }
 }

@@ -49,7 +49,7 @@
             selectedelements.forEach(element => {
                 submittedgoals.push(element.getAttribute('data-value'))
             });
-            document.getElementById('selected-goals').value = submittedgoals.join(',')
+            document.getElementById('selected-goals').value = submittedgoals.join(', ')
             document.getElementById('goals-form').submit()
         }
     </script>

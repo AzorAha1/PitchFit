@@ -228,7 +228,7 @@ def addfood():
         if queryfoodformrng:
             morning_meal = foodapi(query=queryfoodformrng)
             if morning_meal:
-                flash(f'BreakFast logged successfully for morning', 'success')
+                flash(f'BreakFast logged successfully', 'success')
                 mongo.db.users.update_one(
                     {'_id': ObjectId(user_id)},
                     {'$push': {'morning_meal': {'food': morning_meal, 'time': current_time}}}
@@ -236,7 +236,7 @@ def addfood():
         if queryfoodforaftn:
             afternoon_meal = foodapi(query=queryfoodforaftn)
             if afternoon_meal:
-                flash(f'Afternoon Meal successfully for afternoon', 'success')
+                flash(f'Afternoon Meal successfully Logged', 'success')
                 mongo.db.users.update_one(
                     {'_id': ObjectId(user_id)},
                     {'$push': {'afternoon_meal': {'food': afternoon_meal, 'time': current_time}}}
@@ -244,7 +244,7 @@ def addfood():
         if queryfoodfordinner:
             dinner_meal = foodapi(query=queryfoodfordinner)
             if dinner_meal:
-                flash(f'Dinner logged successfully for dinner', 'success')
+                flash(f'Dinner logged successfully', 'success')
                 mongo.db.users.update_one(
                     {'_id': ObjectId(user_id)},
                     {'$push': {'dinner_meal': {'food': dinner_meal, 'time': current_time}}}
