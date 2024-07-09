@@ -10,49 +10,44 @@
         <title>Pitch Fit</title>
     {% endif %}
 </head>
-<body>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-        {% if title %}
-            <title>Pitch Fit | {{ title }}</title>
-        {% else %}
-            <title>Pitch Fit</title>
-        {% endif %}
-    </head>
-    <body class="dashboardbody">
-        <div class="top">
-            <div class="logo-and-title">
-                <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
-    
-                <p>PitchFit</p>
-            </div>
-            <div class="tabs">
-                <a href="{{ url_for('dashboard') }}">Go Back to Dashboard</a>
-            </div>
+<body class="dashboardbody">
+    <div class="top">
+        <div class="logo-and-title">
+            <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
+            <p>PitchFit</p>
         </div>
-        <div class="contentbox">
-            <h1>{{ user.name }}'s Workout Plan</h1>
-            <p>To Build Muscle and get back Fit we will use the Push Pull Legs(PPL) workout plan</p>
-            <div class="workout-schedule">
-                <h2>Weekly Schedule</h2>
-                <ul>
-                    <li><strong>Monday: Push Day</strong> (Shoulders, Chest, Triceps)</li>
-                    <li><strong>Tuesday: Pull Day</strong> (Biceps, Back)</li>
-                    <li><strong>Wednesday: Leg Day</strong> (Legs)</li>
-                    <li><strong>Thursday: Rest Day</strong></li>
-                    <li><strong>Friday: Push Day</strong> (Shoulders, Chest, Triceps)</li>
-                    <li><strong>Saturday: Pull Day</strong> (Biceps, Back)</li>
-                    <li><strong>Sunday: Leg Day</strong> (Legs)</li>
-                </ul>
-            </div>
+        <div class="tabs">
+            <a href="{{ url_for('dashboard') }}">Go Back to Dashboard</a>
         </div>
-    </body>
-    </html>
-    
+    </div>
+    <div class="contentbox">
+        <h1>{{ user.name }}'s Workout Plan</h1>
+        <p>To Build Muscle and get back Fit we will use the Push Pull Legs(PPL) workout plan</p>
+        <div class="workout-schedule">
+            <h2>Weekly Schedule</h2>
+            <form action="{{ url_for('chooseday') }}" method="post" id="currentdayform">
+                <input type="hidden" name="theday" id="currentdayinput">
+            </form>
+            <ul>
+                <li><a href="#" onclick="chooseday('pushday1')"><strong>Monday: Push Day 1</strong> (Shoulders, Chest, Triceps)</strong></a></li>
+                <li><a href="#" onclick="chooseday('pullday1')"><strong>Tuesday: Pull Day 1</strong> (Biceps, Back)</strong></a></li>
+                <li><a href="#" onclick="chooseday('legday1')"><strong>Wednesday: Leg Day 1</strong>(Legs)</a></li>
+                <li><a href="#" onclick="chooseday('restday')"><strong>Thursday: Rest Day</strong></a></li>
+                <li><a href="#" onclick="chooseday('pushday2')"><strong>Friday: Push Day 2</strong> (Shoulders, Chest, Triceps)</a></li>
+                <li><a href="#" onclick="chooseday('pullday2')"><strong>Saturday: Pull Day 2</strong> (Biceps, Back)</a></li>
+                <li><a href="#" onclick="chooseday('legday2')"><strong>Sunday: Leg Day 2</strong> (Legs)</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function chooseday(day) {
+            document.getElementById('currentdayinput').value = day
+            console.log(day)
+            document.getElementById('currentdayform').submit()
+        }
+    </script>
 </body>
+
+
 </html>

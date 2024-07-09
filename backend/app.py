@@ -4,6 +4,7 @@ from bson import ObjectId
 from flask import Flask, flash, render_template, request, redirect, session, url_for
 import bcrypt
 from flask_pymongo import PyMongo
+from exerciseapi import exerciseapi
 from foodstorageapi import foodapi
 
 app = Flask(__name__, template_folder='../frontend/templates/', static_folder='../frontend/')
@@ -250,6 +251,85 @@ def addfood():
                     {'$push': {'dinner_meal': {'food': dinner_meal, 'time': current_time}}}
                 )
     return render_template('addfood.html', user=user)
+@app.route('/dashboard/workout/', methods=['POST', 'GET'])
+def chooseday():
+    """you choose the day to work out"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    user['_id'] = str(user['_id'])
+    if request.method == 'POST':
+        theday = request.form.get('theday')
+        if theday == 'pushday1':
+            return redirect(url_for('pushday1'))
+        elif theday == 'pullday1':
+            return redirect(url_for('pullday1'))
+        elif theday == 'pullday2':
+            return redirect(url_for('pullday2'))
+        elif theday == 'pushday2':
+            return redirect(url_for('pushday2'))
+        elif theday == 'legday1':
+            return redirect(url_for('legday1'))
+        elif theday == 'legday2':
+            return redirect(url_for('legday2'))
+@app.route('/dashboard/workout/pushday1', methods=['GET', 'POST'])
+def pushday1():
+    """push day"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    user['_id'] = str(user['_id'])
+    chestexercises = exerciseapi('chest')
+    triceps = exerciseapi('triceps')
+    return render_template('pushday1.html', title='Push Day 1', chestexercises=chestexercises, triceps=triceps)
+@app.route('/dashboard/workout/pushday2', methods=['GET', 'POST'])
+def pushday2():
+    """push day 2"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    user['_id'] = str(user['_id'])
+    chestexercises = exerciseapi('chest')
+    triceps = exerciseapi('triceps')
+    return render_template('pushday2.html', title='Push Day 2', chestexercises=chestexercises, triceps=triceps)
+@app.route('/dashboard/workout/pullday1', methods=['GET', 'POST'])
+def pullday1():
+    """this is the pull day"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    user['_id'] = str(user['_id'])
+    lats = exerciseapi('lats')
+    bicepexercises = exerciseapi('biceps')
+    return render_template('pullday1.html', title='Pull Day', lats=lats,bicepexercises=bicepexercises)
+@app.route('/dashboard/workout/pullday2', methods=['GET', 'POST'])
+def pullday2():
+    """this is the pull day 2"""
+    user_id = session.get('user', {}).get('_id')
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return redirect(url_for('signin'))
+    user['_id'] = str(user['_id'])
+    lowerbacks = exerciseapi('lower_back')
+    middlebacks = exerciseapi('middle_back')
+    bicepexercises = exerciseapi('biceps')
+    return render_template('pullday2.html', title='Pull Day', lowerbacks=lowerbacks, middlebacks=middlebacks, bicepexercises=bicepexercises)
+@app.route('/dashboard/workout/legday1', methods=['GET', 'POST'])
+def legday1():
+    """leg day 1"""
+    quadexercises = exerciseapi('quadriceps')
+    hamstrings = exerciseapi('hamstrings')
+    return render_template('legday1.html', title='Leg Day 1', quadexercises=quadexercises, hamstrings=hamstrings)
+@app.route('/dashboard/workout/legday2', methods=['GET', 'POST'])
+def legday2():
+    """leg day 2"""
+    calves = exerciseapi('calves')
+    glutes = exerciseapi('glutes')
+    return render_template('legday2.html', title='Leg Day 2', calves=calves, glutes=glutes)
 @app.route('/debug/users')
 def debug_users():
     """Route to debug user data in MongoDB"""

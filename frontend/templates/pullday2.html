@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="top">
+        <div class="logo-and-title">
+            <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
+            <p>PitchFit</p>
+        </div>
+        <div class="tabs">
+            <a href="{{ url_for('workout') }}">Go Back to workout page</a>
+        </div>
+    </div>
+    <div class="contentbox">
+       <h1>Bicep Workout</h1>
+        {% for bicepexercise in bicepexercises[3:] %}
+            <strong>{{ bicepexercise.name }}</strong>
+            <p>type: {{ bicepexercise.type }}</p>
+            <p>muscle: {{ bicepexercise.muscle }}</p>
+            <p>Recommended equipment: {{ bicepexercise.equipment }}</p>
+            <p>Difficulty: {{ bicepexercise.difficulty}}</p>
+            <p>How to do it: {{ bicepexercise.instructions }}</p>
+            <p>--------------------------</p>
+        {% endfor %}
+    </div>
+    <div class="contentbox">
+        <h1>Back Workout(lower back)</h1>
+         {% for lowerback in lowerbacks[0:2] %}
+             <strong>{{ lowerback.name }}</strong>
+             <p>type: {{ lowerback.type }}</p>
+             <p>muscle: {{ lowerback.muscle }}</p>
+             <p>Recommended equipment: {{ lowerback.equipment }}</p>
+             <p>Difficulty: {{ lowerback.difficulty}}</p>
+             <p>How to do it: {{ lowerback.instructions }}</p>
+             <p>--------------------------</p>
+         {% endfor %}
+     </div>
+     <div class="contentbox">
+        <h1>Back Workout(middle back)</h1>
+         {% for middleback in middlebacks[0:2] %}
+             <strong>{{ middleback.name }}</strong>
+             <p>type: {{ middleback.type }}</p>
+             <p>muscle: {{ middleback.muscle }}</p>
+             <p>Recommended equipment: {{ middleback.equipment }}</p>
+             <p>Difficulty: {{ middleback.difficulty}}</p>
+             <p>How to do it: {{ middleback.instructions }}</p>
+             <p>--------------------------</p>
+         {% endfor %}
+     </div>
+</body>
+</html>

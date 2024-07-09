@@ -33,3 +33,4 @@ def foodapi(query):
                 food_dict['Nutrients'].append(nutrient_dict)
             formatted_food_info.append(food_dict)
         return formatted_food_info
+    

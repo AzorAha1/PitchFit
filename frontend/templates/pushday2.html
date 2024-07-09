@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="top">
+        <div class="logo-and-title">
+            <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
+            <p>PitchFit</p>
+        </div>
+        <div class="tabs">
+            <a href="{{ url_for('workout') }}">Go Back to workout page</a>
+        </div>
+    </div>
+    <div class="contentbox">
+        <h1>Second part of the Push Program</h1>
+       <h2>Chest Workout</h1>
+        {% for chestexercise in chestexercises[3:8] %}
+            <strong>{{ chestexercise.name }}</strong>
+            <p>type: {{ chestexercise.type }}</p>
+            <p>muscle: {{ chestexercise.muscle }}</p>
+            <p>Recommended equipment: {{ chestexercise.equipment }}</p>
+            <p>Difficulty: {{ chestexercise.difficulty}}</p>
+            <p>How to do it: {{ chestexercise.instructions }}</p>
+            <p>--------------------------</p>
+        {% endfor %}
+    </div>
+    <div class="contentbox">
+        <h1>Triceps Workout</h1>
+        {% for tricep in triceps[3:8] %}
+            <strong>{{ tricep.name }}</strong>
+            <p>type: {{ tricep.type }}</p>
+            <p>muscle: {{ tricep.muscle }}</p>
+            <p>Recommended equipment: {{ tricep.equipment }}</p>
+            <p>Difficulty: {{ tricep.difficulty}}</p>
+            <p>How to do it: {{ tricep.instructions }}</p>
+            <p>--------------------------</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

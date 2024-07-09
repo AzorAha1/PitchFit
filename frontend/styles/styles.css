@@ -61,6 +61,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 .contentboxsmall p {
     color: black;
 }
@@ -70,12 +71,23 @@ body {
 }
 
 .workout-schedule ul li {
-    background: #e0e0e0;
+    background-color: #46469f;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
 }
+.workout-schedule ul :hover {
+    background: #28289c;
+    color: white;
+}
+.workout-schedule ul li a {
+    text-decoration: none;
+    color: white;
+}
 
+.workout-schedule ul li a:hover {
+    color: white;
+}
 .section {
     height: 100vh;
     display: flex;

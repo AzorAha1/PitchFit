@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="top">
+        <div class="logo-and-title">
+            <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
+            <p>PitchFit</p>
+        </div>
+        <div class="tabs">
+            <a href="{{ url_for('workout') }}">Go Back to workout page</a>
+        </div>
+    </div>
+    <div class="contentbox">
+       <h1>Calves Workout</h1>
+        {% for calf in calves[0:3] %}
+            <strong>{{ calf.name }}</strong>
+            <p>type: {{ calf.type }}</p>
+            <p>muscle: {{ calf.muscle }}</p>
+            <p>Recommended equipment: {{ calf.equipment }}</p>
+            <p>Difficulty: {{ calf.difficulty}}</p>
+            <p>How to do it: {{ calf.instructions }}</p>
+            <p>--------------------------</p>
+        {% endfor %}
+    </div>
+    <div class="contentbox">
+        <h1>Glutes Workout</h1>
+         {% for glute in glutes[0:3] %}
+             <strong>{{ glute.name }}</strong>
+             <p>type: {{ glute.type }}</p>
+             <p>muscle: {{ glute.muscle }}</p>
+             <p>Recommended equipment: {{ glute.equipment }}</p>
+             <p>Difficulty: {{ glute.difficulty}}</p>
+             <p>How to do it: {{ glute.instructions }}</p>
+             <p>--------------------------</p>
+         {% endfor %}
+     </div>
+</body>
+</html>
