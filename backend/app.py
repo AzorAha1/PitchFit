@@ -3,6 +3,7 @@ from datetime import datetime
 from bson import ObjectId
 from flask import Flask, flash, render_template, request, redirect, session, url_for
 import bcrypt
+import math
 from flask_pymongo import PyMongo
 from exerciseapi import exerciseapi
 from foodstorageapi import foodapi
@@ -167,8 +168,10 @@ def deficit():
         bmr = 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age)
     else:
         bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)
+
+    bmr = math.ceil(bmr)
     
-    tdee = bmr * 1.2  # Assuming a sedentary lifestyle by default
+    tdee = math.ceil(bmr * 1.2)  # Assuming a sedentary lifestyle by default and rounding it up
     session['user']['bmr'] = bmr
     session['user']['tdee'] = tdee
 
