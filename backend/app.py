@@ -276,6 +276,8 @@ def chooseday():
             return redirect(url_for('legday1'))
         elif theday == 'legday2':
             return redirect(url_for('legday2'))
+        elif theday == 'restday':
+            return redirect(url_for('restday'))
 @app.route('/dashboard/workout/pushday1', methods=['GET', 'POST'])
 def pushday1():
     """push day"""
@@ -333,6 +335,10 @@ def legday2():
     calves = exerciseapi('calves')
     glutes = exerciseapi('glutes')
     return render_template('legday2.html', title='Leg Day 2', calves=calves, glutes=glutes)
+@app.route('/dashboard/workout/restday', methods=['GET', 'POST'])
+def restday():
+    """this is the rest day page"""
+    return render_template('restday.html', title="Rest Day")
 @app.route('/debug/users')
 def debug_users():
     """Route to debug user data in MongoDB"""

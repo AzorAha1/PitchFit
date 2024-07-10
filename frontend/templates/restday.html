@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    {% if title %}
+        <title>Pitch Fit | {{ title }}</title>
+    {% else %}
+        <title>Pitch Fit</title>
+    {% endif %}
+</head>
+<body>
+    <div class="top">
+        <div class="logo-and-title">
+            <img src="{{ url_for('static', filename='styles/images/icons8-p-64.png') }}" class="logo">
+
+            <p>PitchFit</p>
+        </div>
+        <div class="tabs">
+            <a href="{{ url_for('workout') }}">Go Back to workout page</a>
+        </div>
+    </div>
+    <div class="contentbox">
+        <h1>Rest Day</h1>
+        <h3>Rest is really important for losing weight and getting back to full fitness so take time today to let your body rest, see you tomorrow 😊</h3>
+        <iframe width="1170" height="500" src="https://www.youtube.com/embed/inpok4MKVLM?start=142" title="Rest Day" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+   
+</body>
+</html>
