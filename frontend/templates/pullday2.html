@@ -22,7 +22,8 @@
         </div>
     </div>
     <div class="contentbox">
-       <h1>Bicep Workout</h1>
+        <h1>Second Part of the Pull Program</h1>
+       <h2>Bicep Workout</h2>
         {% for bicepexercise in bicepexercises[3:] %}
             <strong>{{ bicepexercise.name }}</strong>
             <p>type: {{ bicepexercise.type }}</p>
@@ -34,7 +35,8 @@
         {% endfor %}
     </div>
     <div class="contentbox">
-        <h1>Back Workout(lower back)</h1>
+        <h1>Second part of the Pull Program</h1>
+        <h2>Back Workout(lower back)</h2>
          {% for lowerback in lowerbacks[0:2] %}
              <strong>{{ lowerback.name }}</strong>
              <p>type: {{ lowerback.type }}</p>
@@ -46,7 +48,7 @@
          {% endfor %}
      </div>
      <div class="contentbox">
-        <h1>Back Workout(middle back)</h1>
+        <h2>Back Workout(middle back)</h2>
          {% for middleback in middlebacks[0:2] %}
              <strong>{{ middleback.name }}</strong>
              <p>type: {{ middleback.type }}</p>

@@ -22,7 +22,8 @@
         </div>
     </div>
     <div class="contentbox">
-       <h1>Quad Workout</h1>
+        <h1>First Part of the Legs Program</h1>
+       <h2>Quad Workout</h2>
         {% for quadexercise in quadexercises[0:2] %}
             <strong>{{ quadexercise.name }}</strong>
             <p>type: {{ quadexercise.type }}</p>
@@ -34,7 +35,7 @@
         {% endfor %}
     </div>
     <div class="contentbox">
-        <h1>Hamstrings Workout</h1>
+        <h2>Hamstrings Workout</h2>
          {% for hamstring in hamstrings[0:3] %}
              <strong>{{hamstring.name }}</strong>
              <p>type: {{ hamstring.type }}</p>
