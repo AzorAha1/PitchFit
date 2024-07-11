@@ -161,7 +161,7 @@ body {
 .food-container button, .sign-container button {
     width: 100%;
     padding: 15px;
-    background-color: #4CAF50;
+    background-color: #33339c;
     color: white;
     border: none;
     border-radius: 4px;
@@ -170,7 +170,7 @@ body {
 }
 
 .food-container button:hover, .sign-container button:hover {
-    background-color: #45a049;
+    background-color: #6363b0;;
 }
 
 #section1 {
